@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $1 == 'server' || $1 == 's' ]]; then
+  bundle exec rackup -p 3000 -P tmp/rack.pid
+elif [[ $1 == 'kill' ]]; then
+  kill -9 `cat tmp/rack.pid`
+elif [[ $1 == 'static' ]]; then
+  bin/static.rb
+elif [[ $1 == 'generate' || $1 == 'g' ]]; then
+  echo 'generate'
+fi
