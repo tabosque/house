@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module House
   class Base
     include Helpers
@@ -21,10 +19,11 @@ module House
         response.status = 200
         response['Content-Type'] = 'text/html;charset=utf-8'
         response.write body
+      elsif response = Rack::File.new('public').call(env)
       else
         response.status = 404
         response['Content-Type'] = 'text/html;charset=utf-8'
-        response.write '<h1>404 Not Found</h1>'
+        response.write '404 Not Found'
       end
       response
     end
