@@ -1,14 +1,15 @@
 html
   head
     meta charset="utf-8"
+    link rel="shortcut icon" href="favicon.ico"
     title Ruby in House
     link rel="stylesheet" type="text/css" href="assets/application.css"
   body
-    = render 'layouts/header'
-    .container
+    == render 'layouts/header'
+    .main.container
       h1.text-center Yay! You’re in House!
       h2.text-center
         = greeting("Mr. House")
       == yield
-    = render 'layouts/footer'
+    == render 'layouts/footer'
     script src="assets/application.js"
