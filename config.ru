@@ -14,6 +14,4 @@ map '/assets' do
   run environment
 end
 
-map '/' do
-  run House::Base.new
-end
+run House::Base.new
