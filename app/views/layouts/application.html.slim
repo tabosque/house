@@ -4,7 +4,11 @@ html
     title Ruby in House
     link rel="stylesheet" type="text/css" href="assets/application.css"
   body
-    h1 Hello, this is layout file!
-    = greeting("Mr. House")
-    == yield
+    = render 'layouts/header'
+    .container
+      h1.text-center Yay! You’re in House!
+      h2.text-center
+        = greeting("Mr. House")
+      == yield
+    = render 'layouts/footer'
     script src="assets/application.js"
