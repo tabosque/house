@@ -1,6 +1,18 @@
 body {
   background-color: $main-color;
-  img {
-    width: 100%;
+  header {
+    padding: 20px 0;
+    text-align: center;
+    img {
+      width: 60px;
+    }
+  }
+  .main {
+    img {
+      width: 100%;
+    }
+  }
+  footer {
+    padding: 20px 0;
   }
 }
