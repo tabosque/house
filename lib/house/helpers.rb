@@ -1,5 +1,7 @@
+require './app/helpers/application_helper.rb'
 module House
   module Helpers
+    include ApplicationHelper
   end
 
   class << self
