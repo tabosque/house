@@ -13,11 +13,11 @@ if File.exists?('public_html.zip')
   system("rm public_html.zip")
 end
 
+# Start Rack application
+system("bundle exec rackup -p 3100 -P tmp/rack.pid.static -E static -D")
+
 # Set sitemap
 yaml = YAML::load_file(File.expand_path("../..", __FILE__) + '/tmp/sitemap.yml')
-
-# Start Rack application
-system("bundle exec rackup -p 3100 -P tmp/rack.pid.static -E production -D")
 
 # Download files
 localhost = "localhost:3100"

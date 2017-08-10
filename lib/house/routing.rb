@@ -6,7 +6,7 @@ module House
       def initialize()
         @routes = Array.new
         require './config/routes'
-        if ENV['RACK_ENV'] == 'production'
+        if ENV['RACK_ENV'] == 'static'
           generate_sitemap          
         end
       end
