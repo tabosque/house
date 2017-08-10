@@ -37,7 +37,10 @@ module House
       end
 
       def generate_sitemap
-        File.open('tmp/sitemap.yml', 'w') do |f|
+        tmp_dir = 'tmp'
+        Dir.mkdir(tmp_dir) unless Dir.exists?(tmp_dir)
+        sitemap ="#{tmp_dir}/sitemap.yml"
+        File.open(sitemap, 'w') do |f|
           @routes.each {|route| f.puts('- ' + route[:path])}
         end
       end
