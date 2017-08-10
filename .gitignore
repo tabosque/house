@@ -91,3 +91,7 @@ build-iPhoneSimulator/
 
 .sass-cache/
 *.css.map
+
+# For House boilerplate
+public_html/
+public_html.zip

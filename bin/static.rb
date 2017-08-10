@@ -6,8 +6,12 @@ require 'fileutils'
 require "open3"
 
 # Remove old public_html directory and zip file
-system("rm -rf public_html")
-system("rm public_html.zip")
+if File.exists?('public_html')
+  system("rm -rf public_html")
+end
+if File.exists?('public_html.zip')
+  system("rm public_html.zip")
+end
 
 # Set sitemap
 yaml = YAML::load_file(File.expand_path("../..", __FILE__) + '/tmp/sitemap.yml')
