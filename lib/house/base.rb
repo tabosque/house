@@ -5,7 +5,7 @@ module House
     include Routing
 
     def initialize()
-      @project_root = House.project_root
+      @project_root = House.project_root.to_s
       @layout = view_dir + '/layouts/application.html.slim'
       House::Routing.initialize
     end
@@ -19,7 +19,8 @@ module House
         response.status = 200
         response['Content-Type'] = 'text/html;charset=utf-8'
         response.write body
-      elsif response = Rack::File.new('public').call(env)
+      elsif File.file?("#{@project_root}public#{request_path}") && File.readable?("#{@project_root}public#{request_path}")
+        response = Rack::File.new("").serving(@request, "#{@project_root}public#{request_path}")
       else
         response.status = 404
         response['Content-Type'] = 'text/html;charset=utf-8'

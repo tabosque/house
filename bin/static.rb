@@ -2,7 +2,6 @@
 exec ruby -S -x "$0" "$@"
 #! ruby
 require 'yaml'
-require 'fileutils'
 require "open3"
 
 # Remove old public_html directory and zip file
@@ -25,7 +24,7 @@ puts "Downloading files...\n----"
 sleep(2)
 yaml.each do |path|
   puts "Download: http://#{localhost}#{path}"
-  Open3.capture3("wget -pk -E http://#{localhost}#{path}")
+  Open3.capture3("wget -p -k -E http://#{localhost}#{path}")
 end
 
 # Stop Rack application
