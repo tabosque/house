@@ -8,5 +8,5 @@ elif [[ $1 == 'kill' ]]; then
 elif [[ $1 == 'static' ]]; then
   lib/house/static.rb
 elif [[ $1 == 'generate' || $1 == 'g' ]]; then
-  echo 'generate'
+  lib/house/generate.rb $2
 fi
