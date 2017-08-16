@@ -1,8 +1,11 @@
 #! /bin/sh
 exec ruby -S -x "$0" "$@"
 #! ruby
+$LOAD_PATH << File.dirname(File.expand_path(__FILE__))
+require 'static/utils'
 require 'yaml'
-require "open3"
+require 'uri'
+require 'pry'
 
 # Remove old public_html directory and zip file
 if File.exists?('public_html')
@@ -16,15 +19,17 @@ end
 system("bundle exec rackup -p 3100 -P tmp/rack.pid.static -E static -D")
 
 # Set sitemap
-yaml = YAML::load_file(File.expand_path("../..", __FILE__) + '/tmp/sitemap.yml')
+yaml = YAML::load_file(File.expand_path("../..", __FILE__) + '/../tmp/sitemap.yml')
 
 # Download files
 localhost = "localhost:3100"
+root_url = URI("http://#{localhost}")
 puts "Downloading files...\n----"
 sleep(2)
 yaml.each do |path|
-  puts "Download: http://#{localhost}#{path}"
-  Open3.capture3("wget -p -k -E http://#{localhost}#{path}")
+  url = root_url + path
+  puts "Download: #{url}"
+  download(url, root_url)
 end
 
 # Stop Rack application
